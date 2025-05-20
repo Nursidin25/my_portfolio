@@ -3,22 +3,40 @@ import '../models/project.dart';
 import '../widgets/project_item.dart';
 
 class ProjectsScreen extends StatelessWidget {
-  const ProjectsScreen({super.key});
+  final List<Project> projects = [
+    Project(
+      title: 'Portfolio Website',
+      description: 'Website pribadi untuk menampilkan portofolio',
+      imageUrl: 'assets/images/java.png',
+    ),
+    Project(
+      title: 'To-Do List App',
+      description: 'Aplikasi Flutter untuk mengelola tugas harian',
+      imageUrl: 'assets/images/react.png',
+    ),
+    Project(
+      title: 'To-Do List App',
+      description: 'Aplikasi Flutter untuk mengelola tugas harian',
+      imageUrl: 'assets/images/nodejs.png',
+    ),
+    // Tambahkan proyek lainnya jika ada
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final List<Project> projects = [
-      Project(title: "Portfolio Website", description: "A personal portfolio built with Flutter."),
-      Project(title: "E-Commerce App", description: "A full-stack e-commerce mobile app."),
-    ];
-
     return Scaffold(
-      appBar: AppBar(title: const Text("Projects")),
-      body: ListView.builder(
-        itemCount: projects.length,
-        itemBuilder: (context, index) {
-          return ProjectItem(project: projects[index]);
-        },
+      appBar: AppBar(
+        title: Text('Projects'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: GridView.count(
+          crossAxisCount: 3, // Dua kolom
+          mainAxisSpacing: 50,
+          crossAxisSpacing: 50,
+          childAspectRatio: 10 / 12, // Sesuaikan agar pas
+          children: projects.map((project) => ProjectItem(project: project)).toList(),
+        ),
       ),
     );
   }

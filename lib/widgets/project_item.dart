@@ -3,33 +3,41 @@ import '../models/project.dart';
 
 class ProjectItem extends StatelessWidget {
   final Project project;
-  const ProjectItem({super.key, required this.project});
+
+  ProjectItem({required this.project});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.grey[900],
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              project.title,
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                project.imageUrl,
+                fit: BoxFit.cover,
+                width: double.infinity,
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
+          ),
+          SizedBox(height: 8),
+          Text(
+            project.title,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+            child: Text(
               project.description,
-              style: const TextStyle(color: Colors.white70),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
